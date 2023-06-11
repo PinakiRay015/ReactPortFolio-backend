@@ -1,4 +1,4 @@
-require('dotenv');
+require('dotenv').config();
 const express = require('express');
 const { default: mongoose } = require('mongoose');
 
@@ -10,6 +10,11 @@ const hostname = '127.0.0.1';
 app.get("/" , (req , res) =>
 {
     res.send("welcome developers")
+})
+
+app.get("/about" , (req , res) =>
+{
+    res.send("This is about page")
 })
 
 mongoose.connect(process.env.DATABASE).then(() =>
