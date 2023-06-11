@@ -9,8 +9,8 @@ const port = process.env.PORT || 5000;
 const hostname = '127.0.0.1';
 
 app.use(express.json());
-app.use(myRouter)
 app.use(cors())
+app.use(myRouter)
 
 app.get("/" , (req , res) =>
 {
