@@ -1,11 +1,16 @@
 require('dotenv').config();
 const express = require('express');
 const { default: mongoose } = require('mongoose');
-
+const myRouter = require('./router/router');
+const cors = require('cors')
 const app = express();
 
 const port = process.env.PORT || 5000;
 const hostname = '127.0.0.1';
+
+app.use(express.json());
+app.use(myRouter)
+app.use(cors())
 
 app.get("/" , (req , res) =>
 {
