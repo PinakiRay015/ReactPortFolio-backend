@@ -1,39 +1,36 @@
-require('dotenv').config();
-const express = require('express');
-const { default: mongoose } = require('mongoose');
-const myRouter = require('./router/router');
-const cors = require('cors')
+require("dotenv").config();
+const express = require("express");
+const { default: mongoose } = require("mongoose");
+const myRouter = require("./router/router");
+const cors = require("cors");
 const app = express();
 
-const port = process.env.PORT || 5000;
-const hostname = '127.0.0.1';
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+-app.use(express.urlencoded({ extended: false }));
 app.use(
-    cors({
-      origin: ["http://localhost:3000", "https://mern-portfolio-app.onrender.com"],
-    })
-  );
-app.use(myRouter)
+  cors({
+    origin: ["http://localhost:3000", "https://mern-task-app.onrender.com"],
+  })
+);
 
-app.get("/" , (req , res) =>
-{
-    res.send("welcome developers")
-})
+app.use(myRouter);
 
-app.get("/about" , (req , res) =>
-{
-    res.send("This is about page")
-})
+app.get("/", (req, res) => {
+  res.send("welcome developers");
+});
 
-mongoose.connect(process.env.DATABASE).then(() =>
-{
-    try {
-        app.listen(port , hostname , () =>
+app.get("/about", (req, res) => {
+  res.send("This is about page");
+});
+
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        app.listen(PORT , () =>
         {
-            console.log(`The server is listening on port ${port}`);
+            console.log(`The server is listening on port ${PORT}`);
         })
-    } catch (error) {
-        console.log(error);
-    }
-})
+    })
+    .catch((err) => console.log(err))
