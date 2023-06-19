@@ -18,7 +18,7 @@ app.use(
 app.use(myRouter);
 
 app.get("/", (req, res) => {
-  res.send("welcome developers");
+  res.send("Hello developers !! welcome to the portfolio backend");
 });
 
 app.get("/about", (req, res) => {
