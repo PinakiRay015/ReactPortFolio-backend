@@ -20,5 +20,21 @@ const myForm = mongoose.Schema(
   }
 );
 
+const myPartner = mongoose.Schema(
+  {
+    mail: {
+      type: String,
+      required: [true, "please enter the email"],
+    }
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const formDB = mongoose.model("CONTACT", myForm);
-module.exports = formDB;
+const partnerDB = mongoose.model("PARTNER", myPartner);
+module.exports = {
+  formDB,
+  partnerDB
+};
